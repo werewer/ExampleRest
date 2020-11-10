@@ -1,12 +1,9 @@
 package com.pasha.ExampleRest.services;
 
-import org.springframework.stereotype.Service;
+import com.pasha.ExampleRest.entities.Address;
 
-@Service
-public class AddressService {
+import java.util.List;
 
-    public String getAddressByPhoneNumber(String phone) {
-        return "";
-    }
-
+public interface AddressService {
+    List<Address> findAllAddress();
 }

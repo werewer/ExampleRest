@@ -10,23 +10,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("addr/getaddrdata")
-public class MessageController {
-    private int counter = 4;
-
-    private List<Map<String, String>> messages = new ArrayList<>() {{
-        add(new HashMap<>() {{
-            put("id", "1");
-            put("text", "First message");
-        }});
-        add(new HashMap<>() {{
-            put("id", "2");
-            put("text", "Second message");
-        }});
-        add(new HashMap<>() {{
-            put("id", "3");
-            put("text", "Third message");
-        }});
-    }};
+public class ClidRestController {
 
     @GetMapping
     public List<Map<String, String>> list() {

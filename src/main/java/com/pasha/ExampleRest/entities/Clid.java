@@ -1,7 +1,7 @@
 package com.pasha.ExampleRest.entities;
 
 
-public class CLID {
+public class Clid {
     private String clid;
     private Long addrId;
 

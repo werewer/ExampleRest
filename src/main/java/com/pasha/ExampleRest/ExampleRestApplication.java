@@ -26,10 +26,13 @@ public class ExampleRestApplication {
 
     @Bean
     public CommandLineRunner run(RestTemplate restTemplate) throws Exception {
-        return args -> {
-            Address address = restTemplate.getForObject(" http://{some.url}/addr/getaddrdata/{addr_id}",
-                    Address.class);
-            log.info(address.toString());
+        return new CommandLineRunner() {
+            @Override
+            public void run(String... args) throws Exception {
+                Address address = restTemplate.getForObject(" http://{some.url}/addr/getaddrdata/{addr_id}",
+                        Address.class);
+                log.info(address.toString());
+            }
         };
     }
 }
