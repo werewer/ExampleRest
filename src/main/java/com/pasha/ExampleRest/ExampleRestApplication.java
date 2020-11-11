@@ -13,26 +13,26 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootApplication
 public class ExampleRestApplication {
 
-    private static final Logger log = LoggerFactory.getLogger(ExampleRestApplication.class);
+//    private static final Logger log = LoggerFactory.getLogger(ExampleRestApplication.class);
 
     public static void main(String[] args) {
         SpringApplication.run(ExampleRestApplication.class, args);
     }
 
-    @Bean
-    public RestTemplate restTemplate(RestTemplateBuilder builder) {
-        return builder.build();
-    }
-
-    @Bean
-    public CommandLineRunner run(RestTemplate restTemplate) throws Exception {
-        return new CommandLineRunner() {
-            @Override
-            public void run(String... args) throws Exception {
-                Address address = restTemplate.getForObject(" http://{some.url}/addr/getaddrdata/{addr_id}",
-                        Address.class);
-                log.info(address.toString());
-            }
-        };
-    }
+//    @Bean
+//    public RestTemplate restTemplate(RestTemplateBuilder builder) {
+//        return builder.build();
+//    }
+//
+//    @Bean
+//    public CommandLineRunner run(RestTemplate restTemplate) throws Exception {
+//        return new CommandLineRunner() {
+//            @Override
+//            public void run(String... args) throws Exception {
+//                Address address = restTemplate.getForObject(" http://{some.url}/addr/getaddrdata/{addr_id}",
+//                        Address.class);
+//                log.info(address.toString());
+//            }
+//        };
+//    }
 }

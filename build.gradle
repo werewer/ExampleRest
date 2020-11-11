@@ -15,8 +15,10 @@ repositories {
 dependencies {
 	implementation 'org.springframework.data:spring-data-jdbc'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 	runtime 'org.postgresql:postgresql:9.3-1101-jdbc41'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}

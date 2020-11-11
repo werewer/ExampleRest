@@ -1,51 +1,47 @@
 package com.pasha.ExampleRest.controller;
 
-import com.pasha.ExampleRest.exceptions.NotFountException;
-import org.springframework.web.bind.annotation.*;
+import com.pasha.ExampleRest.entities.Address;
+import com.pasha.ExampleRest.entities.Clid;
+import com.pasha.ExampleRest.services.AddressClientServiceRest;
+import com.pasha.ExampleRest.services.ClidServiceDb;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RestController
-@RequestMapping("addr/getaddrdata")
+@RequestMapping("addr/getcliddata")
 public class ClidRestController {
 
+    private final ClidServiceDb clidService;
+    private final AddressClientServiceRest addressClientServiceRest;
+
+    public ClidRestController(ClidServiceDb clidService, AddressClientServiceRest addressClientServiceRest) {
+        this.clidService = clidService;
+        this.addressClientServiceRest = addressClientServiceRest;
+    }
+
     @GetMapping
-    public List<Map<String, String>> list() {
-        return messages;
+    public List<Clid> getAll() {
+        return clidService.findAllClid();
     }
 
-    @GetMapping("{addr_id}")
-    public Map<String, String> getOne(@PathVariable("addr_id") String addrId) {
-        return getMessage(addrId);
+    @GetMapping("{clid_id}")
+    public Clid getClidByAddrId(@PathVariable("clid_id") String clidId) {
+        Clid clid = clidService.findClidById(clidId);
+        Address addr = addressClientServiceRest.findAddressById(clid.getAddrId());
+        clid.setAddress(addr);
+        return clid;
     }
 
-    @PostMapping
-    public Map<String, String> create(@RequestBody Map<String, String> message) {
-        message.put("id", String.valueOf(counter++));
-        messages.add(message);
-        return message;
+    @GetMapping("{clid_id}")
+    public Clid getClidByAddrIds(@PathVariable("clid_id") String clidId) {
+        Clid clid = clidService.findClidById(clidId);
+        Address addr = addressClientServiceRest.findAddressById(clid.getAddrId());
+        clid.setAddress(addr);
+        return clid;
     }
 
-    @PutMapping("{id}")
-    public Map<String, String> update(@PathVariable String id, @RequestBody Map<String, String> message) {
-        Map<String, String> messageFromDb = getMessage(id);
-        messageFromDb.putAll(message);
-        messageFromDb.put("id", id);
-        return messageFromDb;
-    }
-
-    private Map<String, String> getMessage(String id) {
-        return messages.stream()
-                .filter(message -> message.get("id").equals(id))
-                .findFirst()
-                .orElseThrow(NotFountException::new);
-    }
-
-    @DeleteMapping("{id}")
-    public void delete(@PathVariable String id) {
-        messages.remove(getMessage(id));
-    }
 }
