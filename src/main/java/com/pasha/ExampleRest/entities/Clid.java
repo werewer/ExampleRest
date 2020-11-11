@@ -6,15 +6,18 @@ import org.springframework.data.annotation.Transient;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
+import java.io.Serializable;
+
 @Table("clid")
-public class Clid {
+public class Clid implements Serializable {
     @Id
-    @Column("CLID")
+    @Column("clid")
     private String clid;
 
     @JsonIgnore
     @Column("addr_id")
     private Long addrId;
+
 
     @Transient
     private Address address;
