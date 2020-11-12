@@ -1,10 +1,11 @@
 package com.pasha.ExampleRest.services;
 
-import com.pasha.ExampleRest.entities.Clid;
+import com.pasha.ExampleRest.entity.Clid;
 
-import java.util.List;
+import java.util.Collection;
 
 public interface ClidService {
-    List<Clid> findAllClid();
+    Collection<Clid> findAllClid();
     Clid findClidById(String id);
+    Collection<Clid> findClidsByIdList(Collection<String> id);
 }

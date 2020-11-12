@@ -1,4 +1,4 @@
-package com.pasha.ExampleRest.entities;
+package com.pasha.ExampleRest.entity;
 
 import java.io.Serializable;
 

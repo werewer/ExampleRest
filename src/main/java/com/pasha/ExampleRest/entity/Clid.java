@@ -1,4 +1,4 @@
-package com.pasha.ExampleRest.entities;
+package com.pasha.ExampleRest.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.Id;
@@ -17,7 +17,6 @@ public class Clid implements Serializable {
     @JsonIgnore
     @Column("addr_id")
     private Long addrId;
-
 
     @Transient
     private Address address;

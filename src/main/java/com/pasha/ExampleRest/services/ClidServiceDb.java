@@ -1,25 +1,24 @@
 package com.pasha.ExampleRest.services;
 
-import com.pasha.ExampleRest.entities.Clid;
-import com.pasha.ExampleRest.repo.ClidFakeRepository;
-import com.pasha.ExampleRest.repo.ClidRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.pasha.ExampleRest.entity.Clid;
+import com.pasha.ExampleRest.repo.ClidDbRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Service
 public class ClidServiceDb implements ClidService {
 
-    private final ClidRepository repository;
+    private final ClidDbRepository repository;
 
-    public ClidServiceDb(ClidRepository repository) {
+    public ClidServiceDb(ClidDbRepository repository) {
         this.repository = repository;
     }
 
     @Override
-    public List<Clid> findAllClid() {
+    public Collection<Clid> findAllClid() {
         List<Clid> list = new ArrayList<>();
         repository.findAll().forEach(list::add);
         return list;
@@ -28,5 +27,12 @@ public class ClidServiceDb implements ClidService {
     @Override
     public Clid findClidById(String id) {
         return repository.findById(id).orElse(new Clid());
+    }
+
+    @Override
+    public Collection<Clid> findClidsByIdList(Collection<String> ids) {
+        List<Clid> clids = new ArrayList<>();
+        repository.findAllById(ids).forEach(clids::add);
+        return clids;
     }
 }

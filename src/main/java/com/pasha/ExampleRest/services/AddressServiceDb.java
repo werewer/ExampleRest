@@ -1,6 +1,6 @@
 package com.pasha.ExampleRest.services;
 
-import com.pasha.ExampleRest.entities.Address;
+import com.pasha.ExampleRest.entity.Address;
 import com.pasha.ExampleRest.repo.AddressFakeRepository;
 import org.springframework.stereotype.Service;
 

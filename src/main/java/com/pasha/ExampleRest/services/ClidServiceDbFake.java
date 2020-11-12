@@ -1,11 +1,11 @@
 package com.pasha.ExampleRest.services;
 
-import com.pasha.ExampleRest.entities.Clid;
+import com.pasha.ExampleRest.entity.Clid;
 import com.pasha.ExampleRest.repo.ClidFakeRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -27,5 +27,10 @@ public class ClidServiceDbFake implements ClidService {
     @Override
     public Clid findClidById(String id) {
         return repository.findById(id);
+    }
+
+    @Override
+    public List<Clid> findClidsByIdList(Collection<String> ids) {
+        return repository.findByIdList(ids);
     }
 }
